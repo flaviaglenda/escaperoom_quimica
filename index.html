@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Escape Room - Caixa Química</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+
+    <!-- TELA INICIAL -->
+
+    <section id="startScreen" class="screen hero">
+
+        <div class="overlay"></div>
+
+        <div class="heroContent">
+
+            <h1 class="mainTitle">
+                ESCAPE ROOM
+            </h1>
+
+            <h2>
+                CAIXA QUÍMICA
+            </h2>
+
+            <p>
+                Uma cientista encontrou um laboratório escondido.
+                Resolva os desafios e descubra o segredo da caixa misteriosa.
+            </p>
+
+            <button id="startBtn">
+                INICIAR MISSÃO
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- TELA JOGO -->
+
+    <section id="gameScreen" class="screen hidden">
+
+
+        <div class="hud">
+
+            <div class="hudBox">
+
+                ❤️
+                <span id="lives">
+                    3
+                </span>
+
+            </div>
+
+
+            <div class="hudBox">
+
+                ⭐
+                <span id="score">
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="hudBox">
+
+                ⏰
+                <span id="timer">
+                    20:00
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="passwordBox">
+
+            <h3>
+                🔐 SENHA
+            </h3>
+
+            <div class="digits">
+
+                <span id="d1">?</span>
+                <span id="d2">?</span>
+                <span id="d3">?</span>
+                <span id="d4">?</span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="questionContainer">
+
+            <h2 id="levelTitle"></h2>
+
+            <p id="question"></p>
+
+            <div id="answers"></div>
+
+            <button id="hintBtn">
+
+                💡 DICA
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FINAL -->
+
+    <section id="endScreen" class="screen hidden">
+
+        <h1>
+            🔐 PAINEL DA CAIXA
+        </h1>
+
+        <p>
+            Digite a senha encontrada durante o jogo.
+        </p>
+
+
+        <div class="safePanel">
+
+            <div class="passwordDisplay">
+
+                <input maxlength="1" class="passInput" id="p1">
+                <input maxlength="1" class="passInput" id="p2">
+                <input maxlength="1" class="passInput" id="p3">
+                <input maxlength="1" class="passInput" id="p4">
+
+            </div>
+
+            <button id="unlockBtn">
+
+                DESBLOQUEAR
+
+            </button>
+
+        </div>
+
+
+        <div id="boxAnimation">
+
+            <div class="box">
+
+                <div class="lid"></div>
+
+                <div class="body"></div>
+
+                <div class="light"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="medals">
+
+            <div class="medal bronze">
+
+                🥉
+                <h3>Bronze</h3>
+
+            </div>
+
+            <div class="medal prata">
+
+                🥈
+                <h3>Prata</h3>
+
+            </div>
+
+            <div class="medal ouro">
+
+                🥇
+                <h3>Ouro</h3>
+
+            </div>
+
+        </div>
+
+
+        <h2 id="ranking"></h2>
+
+        <p id="finalScore"></p>
+
+        <button onclick="location.reload()">
+
+            Jogar novamente
+
+        </button>
+
+    </section>
+    <section id="victoryScreen" class="screen hidden">
+
+        <div class="victoryContent">
+
+            <h1>
+
+                🏆 MISSÃO CONCLUÍDA
+
+            </h1>
+
+            <p>
+
+                Dentro da caixa havia um pendrive contendo
+                pesquisas secretas.
+
+                Você descobriu que o laboratório realizava
+                experimentos químicos proibidos.
+
+                As informações foram enviadas às autoridades
+                e o laboratório foi fechado.
+
+                Você escapou e salvou muitas pessoas.
+
+            </p>
+
+            <h2 id="finalRank"></h2>
+
+            <h3 id="victoryPoints"></h3>
+
+            <button onclick="location.reload()">
+
+                Jogar novamente
+
+            </button>
+
+        </div>
+
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

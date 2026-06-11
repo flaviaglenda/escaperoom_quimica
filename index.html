@@ -4,259 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Escape Room - Caixa Química</title>
-
+    <title>Escape Room</title>
     <link rel="stylesheet" href="style.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </head>
 
 <body>
 
     <!-- TELA INICIAL -->
-
-    <section id="startScreen" class="screen hero">
-
-        <div class="overlay"></div>
-
-        <div class="heroContent">
-
-            <h1 class="mainTitle">
-                ESCAPE ROOM
-            </h1>
-
-            <h2>
-                CAIXA QUÍMICA
-            </h2>
-
-            <p>
-                Uma cientista encontrou um laboratório escondido.
-                Resolva os desafios e descubra o segredo da caixa misteriosa.
-            </p>
-
-            <button id="startBtn">
-                INICIAR MISSÃO
-            </button>
-
+    <section id="startScreen" class="screen">
+        <h1 class="mainTitle">ESCAPE ROOM</h1>
+        <h2 class="subTitle">CAIXA QUÍMICA</h2>
+        <p style="margin-bottom: 40px; color: #888;">
+            Você está prestes a entrar em um sistema de segurança química. Resolva os desafios para abrir a caixa.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+            <button id="startBtn">INICIAR MISSÃO</button>
+            <button id="showRulesBtn" class="rulesBtn">COMO JOGAR / REGRAS</button>
         </div>
-
     </section>
 
-
-
     <!-- TELA JOGO -->
-
     <section id="gameScreen" class="screen hidden">
-
-
         <div class="hud">
-
-            <div class="hudBox">
-
-                ❤️
-                <span id="lives">
-                    3
-                </span>
-
-            </div>
-
-
-            <div class="hudBox">
-
-                ⭐
-                <span id="score">
-                    0
-                </span>
-
-            </div>
-
-
-            <div class="hudBox">
-
-                ⏰
-                <span id="timer">
-                    20:00
-                </span>
-
-            </div>
-
+            <div class="hudBox">ESTABILIDADE: <span id="lives">3</span></div>
+            <div class="hudBox">CONHECIMENTO: <span id="score">0</span></div>
+            <div class="hudBox">CRONÔMETRO: <span id="timer">20:00</span></div>
         </div>
 
-
-
+        <!-- PAINEL LATERAL DE DÍGITOS -->
         <div class="passwordBox">
-
-            <h3>
-                🔐 SENHA
-            </h3>
-
+            <h3>DÍGITOS</h3>
             <div class="digits">
-
                 <span id="d1">?</span>
                 <span id="d2">?</span>
                 <span id="d3">?</span>
                 <span id="d4">?</span>
-
             </div>
-
         </div>
-
-
 
         <div class="questionContainer">
-
-            <h2 id="levelTitle"></h2>
-
+            <h2 id="levelTitle">PROCESSANDO...</h2>
             <p id="question"></p>
-
             <div id="answers"></div>
-
-            <button id="hintBtn">
-
-                💡 DICA
-
-            </button>
-
+            <div style="margin-top: 40px;">
+                <button id="hintBtn" style="padding: 10px 25px; font-size: 0.7rem; border-color: #333; color: #555;">DICA</button>
+            </div>
         </div>
-
     </section>
 
-
-
-    <!-- FINAL -->
-
+    <!-- FINAL (PAINEL DA CAIXA) -->
     <section id="endScreen" class="screen hidden">
-
-        <h1>
-            🔐 PAINEL DA CAIXA
-        </h1>
-
-        <p>
-            Digite a senha encontrada durante o jogo.
-        </p>
-
+        <h1 class="mainTitle">TERMINAL</h1>
+        <h2 class="subTitle">LIBERAÇÃO FINAL</h2>
+        <p>Insira a sequência de 4 dígitos para abrir a caixa.</p>
 
         <div class="safePanel">
-
             <div class="passwordDisplay">
-
-                <input maxlength="1" class="passInput" id="p1">
-                <input maxlength="1" class="passInput" id="p2">
-                <input maxlength="1" class="passInput" id="p3">
-                <input maxlength="1" class="passInput" id="p4">
-
+                <input type="number" maxlength="1" class="passInput" id="p1" oninput="this.value=this.value.slice(0,1)">
+                <input type="number" maxlength="1" class="passInput" id="p2" oninput="this.value=this.value.slice(0,1)">
+                <input type="number" maxlength="1" class="passInput" id="p3" oninput="this.value=this.value.slice(0,1)">
+                <input type="number" maxlength="1" class="passInput" id="p4" oninput="this.value=this.value.slice(0,1)">
             </div>
-
-            <button id="unlockBtn">
-
-                DESBLOQUEAR
-
-            </button>
-
+            <button id="unlockBtn" style="margin-top: 40px; width: 100%;">DESBLOQUEAR</button>
         </div>
-
 
         <div id="boxAnimation">
-
             <div class="box">
-
                 <div class="lid"></div>
-
-                <div class="body"></div>
-
-                <div class="light"></div>
-
             </div>
-
         </div>
-
 
         <div class="medals">
-
-            <div class="medal bronze">
-
-                🥉
-                <h3>Bronze</h3>
-
-            </div>
-
-            <div class="medal prata">
-
-                🥈
-                <h3>Prata</h3>
-
-            </div>
-
-            <div class="medal ouro">
-
-                🥇
-                <h3>Ouro</h3>
-
-            </div>
-
+            <div class="medal bronze">🥉</div>
+            <div class="medal prata">🥈</div>
+            <div class="medal ouro">🥇</div>
         </div>
 
-
-        <h2 id="ranking"></h2>
-
-        <p id="finalScore"></p>
-
-        <button onclick="location.reload()">
-
-            Jogar novamente
-
-        </button>
-
+        <h2 id="ranking" style="margin-top: 30px; font-size: 1.2rem; color: var(--verde-neon);"></h2>
+        <p id="finalScore" style="font-size: 0.9rem; margin-top: 5px; color: var(--cinza-texto);"></p>
+        <button onclick="location.reload()" style="margin-top: 50px; font-size: 0.7rem; border-color: #222; color: #444;">REINICIAR</button>
     </section>
+
+    <!-- VITÓRIA -->
     <section id="victoryScreen" class="screen hidden">
-
-        <div class="victoryContent">
-
-            <h1>
-
-                🏆 MISSÃO CONCLUÍDA
-
-            </h1>
-
-            <p>
-
-                Dentro da caixa havia um pendrive contendo
-                pesquisas secretas.
-
-                Você descobriu que o laboratório realizava
-                experimentos químicos proibidos.
-
-                As informações foram enviadas às autoridades
-                e o laboratório foi fechado.
-
-                Você escapou e salvou muitas pessoas.
-
-            </p>
-
-            <h2 id="finalRank"></h2>
-
-            <h3 id="victoryPoints"></h3>
-
-            <button onclick="location.reload()">
-
-                Jogar novamente
-
-            </button>
-
-        </div>
-
+        <h1 class="mainTitle">SUCESSO</h1>
+        <h2 class="subTitle">CAIXA ABERTA</h2>
+        <p style="margin: 30px auto;">O segredo foi revelado. Missão concluída com êxito.</p>
+        <h2 id="finalRank"></h2>
+        <h3 id="victoryPoints" style="color: var(--verde-neon); margin-top: 10px; margin-bottom: 50px;"></h3>
+        <button onclick="location.reload()">NOVA AMOSTRA</button>
     </section>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>
